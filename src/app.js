@@ -14,7 +14,9 @@ app.set("views", path.join(__dirname, "views"));
 const exphbs = create({
   extname: '.hbs',
   layoutsDir: path.join(app.get("views"), "layouts"),
-  defaultLayout: 'main'
+  defaultLayout: 'main',
+  //Opcional si no le voy cambiar el nombre partials
+  partialDir: path.join(app.get("views"),"partials")
 });
 
 app.engine(".hbs", exphbs.engine);
