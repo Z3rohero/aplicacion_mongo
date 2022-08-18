@@ -2,6 +2,7 @@ import express from "express";
 import {create} from 'express-handlebars';
 import indexRoutes from './routes/routes.js';
 import path from 'path';
+import  morgan from 'morgan';
 
 const app = express();
 // pa configura  el motor de la plantilla
@@ -21,6 +22,9 @@ const exphbs = create({
 
 app.engine(".hbs", exphbs.engine);
 app.set("view engine", ".hbs");
+
+//middlewares
+app.use(morgan('dev'));
 
 // Routes
 app.use(indexRoutes);

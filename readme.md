@@ -40,3 +40,26 @@ app.set("view engine", ".hbs");
 app.use(indexRoutes);
 
 export default app;
+
+
+
+// Para conectar a la bases de datos 
+es de la seguinete manera 
+// ten cuenta que tiene que importala al index.js
+
+//Conecion a la bases de datos
+
+
+import mongoose from "mongoose";
+const mySecret = process.env['mongo_']
+
+
+export async function connecToDB() {
+  try {
+    await mongoose.connect(mySecret);
+    console.log("todo salio bien");
+  } catch (error) {
+    console.log(error);
+  }
+
+}
