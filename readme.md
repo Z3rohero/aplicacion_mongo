@@ -63,3 +63,9 @@ export async function connecToDB() {
   }
 
 }
+
+//se  crear la funcion para dirrecionar el post de //envio de la informacion
+
+router.post('/tasks/add',(req, res)=>{
+  res.send ('guardado ')
+})

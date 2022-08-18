@@ -25,8 +25,10 @@ app.set("view engine", ".hbs");
 
 //middlewares
 app.use(morgan('dev'));
-
+app.use(express.urlencoded({extend:false}))
 // Routes
 app.use(indexRoutes);
+
+
 
 export default app;
