@@ -1,4 +1,4 @@
-import {Schema , model} from 'moongose'
+import {Schema , model} from 'mongoose'
 
 //realizacion de modelo en nosql 
 const taskSchema =new Schema({
