@@ -3,35 +3,40 @@ import Task from '../models/Task';
 const router = Router()
 
 router.get("/", async (req, res) => {
- // para hacer una consulta de Task
- //Funciones para recordar 
- // lean () Me pasar un objeto en javascript
+  // para hacer una consulta de Task
+  //Funciones para recordar 
+  // lean () Me pasar un objeto en javascript
 
- const tasks = await Task.find().lean() 
- res.render("index", {tasks:tasks});
+  const tasks = await Task.find().lean()
+  res.render("index", { tasks: tasks });
 });
 router.post('/tasks/add', async (req, res) => {
   const task = Task(req.body)
   await task.save()
 
   res.redirect('/')
- 
-  
+
+
 })
 
 router.get("/about", (req, res) => {
   res.render("about")
 });
 
-router.get("/edit/:id", (req, res) => {
-  //await Task.findById()
-  
-  res.render("edit")
+router.get("/edit/:id", async (req, res) => {
+  const task = await
+    Task.findById(req.params.id).lean()
+
+  res.render("edit", { task })
 });
 
-router.post('/edit/:id ',(req,res)=>{
-  console.log(req.body)
-  res.send("recibido")
+router.post('/edit/:id ', async (req, res) => {
+  //funcion para actualizar mi bases de datos 
+  //req.body es la inofrmacion que esta actualizado 
+  const { id } = req.params
+  await Task.findByIdUpdate(id, req.body)
+
+  res.redirect('/');
 })
 
 export default router;
