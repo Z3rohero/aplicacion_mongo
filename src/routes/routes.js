@@ -2,14 +2,21 @@ import { Router } from 'express';
 import Task from '../models/Task';
 const router = Router()
 
-router.get("/", (req, res) => {
-  res.render("index")
+router.get("/", async (req, res) => {
+ // para hacer una consulta de Task
+ //Funciones para recordar 
+ // lean () Me pasar un objeto en javascript
+
+ const tasks = await Task.find().lean() 
+ res.render("index", {tasks:tasks});
 });
 router.post('/tasks/add', async (req, res) => {
   const task = Task(req.body)
-  const tasksaved = await task.save()
-  console.log(tasksaved)
-  res.send('guardado ')
+  await task.save()
+
+  res.redirect('/')
+ 
+  
 })
 
 router.get("/about", (req, res) => {

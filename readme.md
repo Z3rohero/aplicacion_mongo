@@ -69,3 +69,31 @@ export async function connecToDB() {
 router.post('/tasks/add',(req, res)=>{
   res.send ('guardado ')
 })
+
+
+// para guarda la informacion en mogoldb
+
+recuerda que debo import mongoose
+
+
+router.post('/tasks/add', async (req, res) => {
+  const task = Task(req.body)
+  const tasksaved = await task.save()
+  console.log(tasksaved)
+  res.send('guardado ')
+})
+
+
+Para hacer una consulta 
+
+find() Encuentra todo los objetos en la bases de datos
+
+router.get("/", (req, res) => {
+ // para hacer una consulta de Task
+ const task = await  Task.find()
+
+ console.log(tasks)
+  
+ res.render("index", {tasks:tasks});
+});
+
