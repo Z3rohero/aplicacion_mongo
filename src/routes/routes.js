@@ -23,9 +23,16 @@ router.get("/about", (req, res) => {
   res.render("about")
 });
 
-router.get("/edit", (req, res) => {
+router.get("/edit/:id", (req, res) => {
+  //await Task.findById()
+  
   res.render("edit")
 });
+
+router.post('/edit/:id ',(req,res)=>{
+  console.log(req.body)
+  res.send("recibido")
+})
 
 export default router;
 
