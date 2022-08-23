@@ -34,10 +34,23 @@ router.post('/edit/:id ', async (req, res) => {
   //funcion para actualizar mi bases de datos 
   //req.body es la inofrmacion que esta actualizado 
   const { id } = req.params
-  await Task.findByIdUpdate(id, req.body)
+  console.log(req.body)
+  await Task.findByIdAndUpdate(id, req.body)
+  
 
-  res.redirect('/');
+  res.redirect("/");
 })
+
+
+router.get('/delete/:id', async (req, res) => {
+  //funcion para actualizar mi bases de datos 
+  //req.body es la inofrmacion que esta actualizado 
+  const { id } = req.params
+  await Task.findByIdAndDelete(id, req.body)
+   
+  res.redirect("/");
+})
+
 
 export default router;
 
