@@ -97,3 +97,15 @@ router.get("/", (req, res) => {
  res.render("index", {tasks:tasks});
 });
 
+// para cambiar de hecho
+router.get('/done/:id', async (req, res) => {
+  //funcion para actualizar mi bases de datos 
+  //req.body es la inofrmacion que esta actualizado 
+  const { id } = req.params
+  await Task.findById(id)
+    //cambio mi tarea 
+   task.done = !task.done;
+  
+   res.send("hecho")
+  //res.redirect("/");
+})

@@ -14,8 +14,12 @@
       <td>{{title}}</td>
       <td>{{description}}</td>
        <td>
-         <button>Realizado</button>
-         <a href="/delete/{{_id}}">Delete</a>
+         {{#if done}}
+            <a href="/done/{{_id}}"> hecho</a>
+         {{else}}
+             <a href="/done/{{_id}}">No realizado</a>
+         {{/if}}
+         <a href="/delete/{{_id}}">borrar</a>
           <a href="/edit/{{_id}}">actualizar</a>
        </td>
     </tr>
