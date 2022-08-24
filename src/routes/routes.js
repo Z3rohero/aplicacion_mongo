@@ -6,7 +6,6 @@ router.get("/", async (req, res) => {
   // para hacer una consulta de Task
   //Funciones para recordar 
   // lean () Me pasar un objeto en javascript
-
   const tasks = await Task.find().lean()
   res.render("index", { tasks: tasks });
 });
@@ -24,14 +23,17 @@ router.get("/about", (req, res) => {
 });
 
 router.get("/edit/:id", async (req, res) => {
-  const task = await Task.findById(req.params.id).lean()
+  try {
+    const task = await Task.findById(req.params.id).lean()
+    res.render("edit", { task })
+  } catch (error) {
+    console.log(error.message)
 
-  res.render("edit", { task })
+  }
 });
 
 router.post('/edit/:id ', async (req, res) => {
-  //funcion para actualizar mi bases de datos 
-  //req.body es la inofrmacion que esta actualizado 
+
   const { id } = req.params
 
   await Task.findByIdAndUpdate(id, req.body)
