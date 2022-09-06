@@ -1,4 +1,6 @@
-<table>
+{{#if tasks}}
+
+<table class= "table table-bordered table-hover table-dark">
   <thead>
     <tr>
       <th>N</th>
@@ -15,17 +17,21 @@
       <td>{{description}}</td>
        <td>
          {{#if done}}
-            <a href="/done/{{_id}}"> hecho</a>
+            <a href="/done/{{_id}}" class="btn btn-success"> hecho</a>
          {{else}}
-             <a href="/done/{{_id}}">No realizado</a>
+             <a href="/done/{{_id}}"  class="btn btn-dark">No realizado</a>
          {{/if}}
-         <a href="/delete/{{_id}}">borrar</a>
-          <a href="/task/{{_id}}/edit">actualizar</a>
+         <a href="/delete/{{_id}}" class="btn btn-danger">borrar</a>
+          <a href="/task/{{_id}}/edit"  class="btn btn-info">actualizar</a>
        </td>
     </tr>
     {{/each}}
   </tbody>
 </table>
- <!-- Para recorrre con handelerbar se utiliza
-   Con for -> each
-   -->
+{{else}}
+<div class=" text-center ">
+  <h1>No existe tareas</h1>
+</div>
+
+
+ {{/if}}
