@@ -1,8 +1,9 @@
 //Conecion a la bases de datos
+
 import mongoose from "mongoose";
-const mySecret = process.env['mongo_']
+import { config } from 'dotenv';
 
-
+const mySecret = process.env.mongo
 export async function connecToDB() {
   try {
     await mongoose.connect(mySecret);
